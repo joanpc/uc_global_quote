@@ -1,0 +1,38 @@
+<?php
+/**
+ * Implementation of hook_schema().
+ */
+
+function uc_shipping_zones_schema() {
+   $schema['uc_shipping_zones'] = array(
+    'description' => '',
+    'fields' => array(
+        'zid' => array(
+            'type' => 'serial',
+            'not null' => TRUE,
+         ),
+        'name' => array(
+            'type' => 'varchar',
+            'length' => 255,
+            'not null' => FALSE,
+          ),
+         'countries' => array(
+            'type' => 'text',
+            //'length' => 1024,
+            'not null' => FALSE,
+          ),
+         
+     ),
+   'primary key' => array('zid'),
+   );
+   
+  return $schema;
+}
+
+function uc_shipping_zones_install() {
+  drupal_install_schema('uc_shipping_zones');
+}
+
+function uc_shipping_zones_uninstall() {
+  drupal_uninstall_schema('uc_shipping_zones');
+}

@@ -1,0 +1,6 @@
+name = Shipping Zones
+description = Defines zones for shippement purposes
+dependencies[] = uc_quote
+package = Ubercart - fulfillment
+core = 6.x
+php = 5.0
