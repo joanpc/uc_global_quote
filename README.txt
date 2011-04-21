@@ -23,8 +23,5 @@ Enjoy, and send-me your comments and patches :)
 
 https://github.com/joanpc/uc_global_quote
 
-
-
-
 ----
 Copyright (c) 2010, Joan Perez i Cauhe
