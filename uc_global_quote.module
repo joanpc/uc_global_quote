@@ -38,7 +38,7 @@ function uc_global_quote_shipping_method() {
       'callback' => 'uc_global_quote_quote',
       'accessorials' => array(
         t('Standard delivery'),
-      ),
+        ),
     ),
     'weight' => $weight['global_quote'],
   );
@@ -88,7 +88,6 @@ function uc_global_quote_theme($form){
 
 /*
  *  Ubercart quote method
- *  TODO: Implement zones
  */
 
 function uc_global_quote_quote($products, $details) {

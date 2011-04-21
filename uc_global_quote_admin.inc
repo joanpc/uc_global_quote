@@ -160,7 +160,7 @@ function uc_global_quote_admin_submit($form, &$form_state){
  */
 
 function theme_uc_global_quote_admin($form){
-  $header = array(t('Zone'), t('Minimum value'), t('Maximum value'), t('Shipping Rate'), t('Delete'));
+  $header = array(t('Zone'), t('Minimum weight'), t('Maximum weight'), t('Shipping Rate'), t('Delete'));
   $result = db_query("SELECT qid,min,max,rate,uc_global_quote.zid,uc_shipping_zones.name as zone FROM {uc_global_quote} LEFT JOIN {uc_shipping_zones} ON uc_shipping_zones.zid = uc_global_quote.zid ORDER by zone, min");
   
  
