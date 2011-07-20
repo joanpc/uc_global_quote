@@ -13,6 +13,10 @@ Build using the uc_tablequote as base code.
 Installation
 ------------
 
+Requirements: 
+
+Ahah Helper,  http://drupal.org/project/ahah_helper
+
 Copy to your sites/all/modules, enable the module
 
 Add new shipping zones in: admin/store/settings/quotes/methods/zones
@@ -23,5 +27,11 @@ Enjoy, and send-me your comments and patches :)
 
 https://github.com/joanpc/uc_global_quote
 
+----------
+CHANGELOG
+----------
+
+v0.1 Added Regions support. Now it requires http://drupal.org/project/ahah_helper
+
 ----
-Copyright (c) 2010, Joan Perez i Cauhe
+Copyright (c) 2011, Joan Perez i Cauhe

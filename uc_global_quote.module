@@ -94,7 +94,7 @@ function uc_global_quote_quote($products, $details) {
   $total = 0;
   
   // Get shipping zone
-  $zone = uc_shipping_zones_get((int)$details['country']);
+  $zone = uc_shipping_zones_get((int)$details['country'], (int)$details['zone']);
   if (!$zone->zid) return array();
 
   foreach ($products as $product) {

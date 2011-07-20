@@ -113,7 +113,7 @@ function uc_global_quote_admin_validate($form, &$form_state){
   if ($form_state['values']['uc_global_quote_maximum'] > 0) {
     //check to make sure the new settings dont overlap any existing ranges
    
-    if ($form_state['values']['qid']) $result = db_query("SELECT * FROM {uc_global_quote} WHERE zid=%f AND qid <> $d ORDER BY min", $form_state['values']['uc_global_quote_zone'], $form_state['values']['qid']);
+    if ($form_state['values']['qid']) $result = db_query("SELECT * FROM {uc_global_quote} WHERE zid=%f AND qid <> %d ORDER BY min", $form_state['values']['uc_global_quote_zone'], $form_state['values']['qid']);
     else $result = db_query("SELECT * FROM {uc_global_quote} WHERE zid=%f ORDER BY min", $form_state['values']['uc_global_quote_zone']);
  
     while ($r = db_fetch_object($result)) {

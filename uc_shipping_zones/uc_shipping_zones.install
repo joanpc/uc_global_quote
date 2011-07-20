@@ -36,3 +36,23 @@ function uc_shipping_zones_install() {
 function uc_shipping_zones_uninstall() {
   drupal_uninstall_schema('uc_shipping_zones');
 }
+
+function uc_shipping_zones_update_6010(&$sandbox){
+  // For most updates, the following is sufficient.
+  $ret = array();
+  
+  // try to enable ahah helper
+  if (! module_exists('ahah_helper')) drupal_install_modules(array('ahah_helper'));
+
+  if (module_exists('ahah_helper')) {
+        // Add region field
+        db_add_field($ret, 'uc_shipping_zones', 'regions', array(
+               'type' => 'text',
+               'not null' => FALSE
+        ));
+  } else {
+        $ret['#abort'] = array('success' => FALSE, 'query' => 'Please Install ' . l('Aha Helper module', 'http://drupal.org/project/ahah_helper'));
+  }
+            
+  return $ret;
+}

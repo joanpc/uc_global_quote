@@ -39,7 +39,7 @@ function uc_shipping_zones_theme($form){
  * @return
  * an array containing the shipping zones. 
  */
-function uc_shipping_zones_get($country = NULL) {
+function uc_shipping_zones_get($country = NULL, $region = NULL) {
 
     if (! $country) $r = db_query("SELECT * FROM {uc_shipping_zones} ORDER BY name");
     else {
@@ -51,8 +51,17 @@ function uc_shipping_zones_get($country = NULL) {
             $c->name = $country;
             $c->id = db_result(db_query("SELECT country_name FROM {uc_countries} WHERE country_name = %s", $country));
         }
-        $r = db_query("SELECT * FROM {uc_shipping_zones} WHERE countries LIKE '%%%s%%' ORDER BY name", $c->name . ',' . $c->id);
-        return db_fetch_object($r);
+        if (is_int($region)) {
+            $r->name = uc_zone_get_by_id($region);
+            $r->id = $region;
+        }
+        else {
+            $r->name = $region;
+            $r->id = db_result(db_query("SELECT zone_name FROM {uc_zones} WHERE zone_name = %s", $region));
+        }
+        dprint_r(sprintf("SELECT * FROM {uc_shipping_zones} WHERE countries LIKE '%%%s%%' AND (regions LIKE '%%%s%%' OR regions IS NULL) ORDER BY name", $c->name . ',' . $c->id, $r->name . ',' . $r->id));
+        $row = db_query("SELECT * FROM {uc_shipping_zones} WHERE countries LIKE '%%%s%%' AND (regions LIKE '%%%s%%' OR regions IS NULL) ORDER BY name", $c->name . ',' . $c->id, $r->name . ',' . $r->id);
+        return db_fetch_object($row);
     }
 
     $rows = array();
