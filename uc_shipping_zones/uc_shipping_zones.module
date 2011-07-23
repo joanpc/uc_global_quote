@@ -59,8 +59,7 @@ function uc_shipping_zones_get($country = NULL, $region = NULL) {
             $r->name = $region;
             $r->id = db_result(db_query("SELECT zone_name FROM {uc_zones} WHERE zone_name = %s", $region));
         }
-        dprint_r(sprintf("SELECT * FROM {uc_shipping_zones} WHERE countries LIKE '%%%s%%' AND (regions LIKE '%%%s%%' OR regions IS NULL) ORDER BY name", $c->name . ',' . $c->id, $r->name . ',' . $r->id));
-        $row = db_query("SELECT * FROM {uc_shipping_zones} WHERE countries LIKE '%%%s%%' AND (regions LIKE '%%%s%%' OR regions IS NULL) ORDER BY name", $c->name . ',' . $c->id, $r->name . ',' . $r->id);
+        $row = db_query("SELECT * FROM {uc_shipping_zones} WHERE countries LIKE '%%%s%%' AND (regions LIKE '%%%s%%' OR (regions IS NULL OR regions = '')) ORDER BY name", $c->name . ',' . $c->id, $r->name . ',' . $r->id);
         return db_fetch_object($row);
     }
 
