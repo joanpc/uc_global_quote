@@ -66,7 +66,7 @@ function uc_global_quote_admin($form_state, $id = 0){
   $form['quote']['uc_global_quote_rate'] = array(
     '#type' => 'textfield',
     '#title' => t('Shipping Rate'),
-    '#default_value' => number_format($edit->rate, variable_get('uc_currency_prec', 2)),
+    '#default_value' => number_format($edit->rate, variable_get('uc_currency_prec', 2), '.', ''),
     '#size' => 12,
     '#description' => t('Shipping price in %currency', array('%currency' => variable_get('uc_currency_code', 'USD'))),
   );
@@ -168,8 +168,8 @@ function theme_uc_global_quote_admin($form){
     $row = array();
     $qid = $r->qid;
     $row[] = ($r->zone)? $r->zone : '--unnassigned--';
-    $row[] = number_format($r->min, 0, variable_get('uc_currency_dec', '.'), '');
-    $row[] = number_format($r->max, 0, variable_get('uc_currency_dec', '.'), '');
+    $row[] = number_format($r->min, 2, variable_get('uc_currency_dec', '.'), '');
+    $row[] = number_format($r->max, 2, variable_get('uc_currency_dec', '.'), '');
     $row[] = ($r->rate > 0)? uc_price($r->rate, array()) : 'Free';
     $row[] = drupal_render($form['rates'][$qid]['delete']);
     $row[] = l(t('edit'), 'admin/store/settings/quotes/methods/global_quote/'. $qid);

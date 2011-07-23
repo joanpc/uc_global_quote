@@ -21,7 +21,10 @@ function uc_shipping_zones_schema() {
             //'length' => 1024,
             'not null' => FALSE,
           ),
-         
+          'regions', array(
+               'type' => 'text',
+               'not null' => FALSE
+        ),
      ),
    'primary key' => array('zid'),
    );
