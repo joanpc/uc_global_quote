@@ -5,4 +5,4 @@ dependencies[] = ahah_helper
 package = Ubercart - fulfillment
 core = 6.x
 php = 5.0
-version = "6.x-0.1"
+version = "6.x-0.2"
