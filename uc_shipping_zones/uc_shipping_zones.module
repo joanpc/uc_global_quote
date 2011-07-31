@@ -59,7 +59,14 @@ function uc_shipping_zones_get($country = NULL, $region = NULL) {
             $r->name = $region;
             $r->id = db_result(db_query("SELECT zone_name FROM {uc_zones} WHERE zone_name = %s", $region));
         }
-        $row = db_query("SELECT * FROM {uc_shipping_zones} WHERE countries LIKE '%%%s%%' AND (regions LIKE '%%%s%%' OR (regions IS NULL OR regions = '')) ORDER BY name", $c->name . ',' . $c->id, $r->name . ',' . $r->id);
+        
+        // Willcard countries without regions 
+        if ($region < 1 && !db_result(db_query("SELECT zone_id FROM {uc_zones} WHERE zone_country_id = %d", $c->id ))) {        
+            $row = db_query("SELECT * FROM {uc_shipping_zones} WHERE countries LIKE '%%%s%%'", $c->name . ',' . $c->id);
+        }
+        else {
+            $row = db_query("SELECT * FROM {uc_shipping_zones} WHERE countries LIKE '%%%s%%' AND (regions LIKE '%%%s%%' OR (regions IS NULL OR regions = '')) ORDER BY name", $c->name . ',' . $c->id, $r->name . ',' . $r->id);
+        }
         return db_fetch_object($row);
     }
 
