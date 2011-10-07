@@ -1,8 +1,0 @@
-name = Shipping Zones
-description = Defines zones for shippement purposes
-dependencies[] = uc_quote
-dependencies[] = ahah_helper
-package = Ubercart - fulfillment
-core = 6.x
-php = 5.0
-version = "6.x-0.2"

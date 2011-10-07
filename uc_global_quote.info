@@ -1,7 +1,0 @@
-name = Global Shipping Quote
-description = Defines global quotes based on weight and shipping zones
-dependencies[] = uc_shipping_zones
-package = Ubercart - fulfillment
-core = 6.x
-php = 5.0
-version = "6.x-0.2"
